@@ -9,31 +9,41 @@ chrome.runtime.onConnect.addListener(function(port) {
     });
   });
 
-  async function loadImg(imageData){
+  async function loadImg(data){
+
+    var imageData=data.imageData;
+    var testName=data.testName || 'Screenshot test!';
+    var appName=data.appName || 'Drag and Drop Ext.';
+    var apiKey, serverUrl;
+
+    chrome.storage.local.get(['apikey', 'serverurl'], function(result) {
+      apiKey = result.apikey || '';
+      serverUrl = result.serverurl || '';
+    });
 
     let eyes 
     eyes = new Eyes()
 
     // Initialize the eyes configuration
-    const configuration = new Configuration();
+    const configuration = eyes.getConfiguration();
 
-    configuration.setApiKey('euFn9D3orGU7VFLJ5V2o102103Wkvx3AX0D8LeLu7R4HUz8110')
+    configuration.setApiKey(apiKey);
 
     // Set new batch
-    configuration.setBatch(new BatchInfo('Demo batch'))
+    // configuration.setBatch(new BatchInfo('Demo batch'))
 
     // Set the configuration to eyes
     eyes.setConfiguration(configuration);
 
-    await uploadIt(eyes,imageData);
+    await uploadIt(eyes,imageData,appName,testName);
 
 
 }
 
-async function uploadIt(eyes,imageData)
+async function uploadIt(eyes,imageData,appName,testName)
 {
 
-  await eyes.open('Applitools site', 'Screenshot test!', {width: 800, height: 600})
+  await eyes.open(appName,testName, {width: 800, height: 600})
 
   await eyes.check('Buffer', Target.base64(imageData.split(',')[1]))
   

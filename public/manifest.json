@@ -2,14 +2,15 @@
     "manifest_version": 3,
     "name": "Drag and Drop Applitools Eyes Image Uploader",
     "version": "1.0",
+    "options_page": "options.html",
     "permissions": [
-      "activeTab","notifications"
+      "activeTab","notifications","storage"
     ],
     "host_permissions": [
         "http://localhost/*",
         "https://localhost/*"
     ],
-    "action": {"default_popup": "uploader.html"},
+    "action": {"default_popup": "popup.html"},
     "background": {
         "service_worker": "background.js"
       },

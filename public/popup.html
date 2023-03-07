@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Image Uploader with Parameters</title>
+    <script src="popup.js" charset="utf-8"></script>
+    <style>
+    .drop-area {
+      border-style: dotted;
+      height: 150px;
+      width: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    
+    .drop-area.dragover {
+      background-color: #f1f1f1;
+    }
+    
+    .drop-message {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    
+    .status-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: #f1f1f1;
+      padding: 10px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    
+    .file-name {
+      margin-top: 10px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    
+    </style>
+  </head>
+  <body>
+    <form>
+      <label for="testname">Test Name:</label>
+      <input type="text" id="testname" name="testname"><br><br>
+      <label for="appname">App Name:</label>
+      <input type="text" id="appname" name="appname"><br><br>
+      <button type="button" id="run-test-btn" disabled>Run Test</button>
+      <div id="file-name" class="file-name"></div>
+    </form>
+    <div id="drop-area" class="drop-area">
+      <div class="drop-message">Drag and drop your image here</div>
+    </div>
+    <div id="status-bar" class="status-bar"></div>    
+    <script src="uploader.js"></script>
+  </body>
+</html>
+
