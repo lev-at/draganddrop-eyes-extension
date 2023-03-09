@@ -14,12 +14,8 @@ chrome.runtime.onConnect.addListener(function(port) {
     var imageData=data.imageData;
     var testName=data.testName || 'Screenshot test!';
     var appName=data.appName || 'Drag and Drop Ext.';
-    var apiKey, serverUrl;
-
-    chrome.storage.local.get(['apikey', 'serverurl'], function(result) {
-      apiKey = result.apikey || '';
-      serverUrl = result.serverurl || '';
-    });
+    var apiKey=data.apiKey
+    var serverUrl=data.serverUrl || 'https://eyesapi.applitools.com';
 
     let eyes 
     eyes = new Eyes()
@@ -28,6 +24,7 @@ chrome.runtime.onConnect.addListener(function(port) {
     const configuration = eyes.getConfiguration();
 
     configuration.setApiKey(apiKey);
+    configuration.setServerUrl(serverUrl);
 
     // Set new batch
     // configuration.setBatch(new BatchInfo('Demo batch'))
